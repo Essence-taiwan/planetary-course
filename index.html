@@ -49,25 +49,29 @@
   }
 
   .sidebar-header {
-    padding: 1.5rem 1.25rem 1rem;
+    padding: 2.5rem 1.25rem 0.75rem;
     border-bottom: 1px solid var(--cream-border);
     flex-shrink: 0;
   }
 
   .sidebar-course-label {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
+    display: none;
   }
 
   .sidebar-course-title {
     font-family: var(--serif);
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--text-primary);
-    line-height: 1.5;
+    line-height: 1.55;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-course-subtitle {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
   }
 
   .sidebar-nav {
@@ -86,23 +90,25 @@
   }
 
   .chapter-label {
-    padding: 0.7rem 1.25rem 0.3rem;
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    padding: 0.75rem 1.25rem 0.35rem;
+    font-size: 13px;
+    letter-spacing: 0.04em;
     color: var(--accent);
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 6px;
+    font-family: var(--serif);
+    font-weight: 500;
   }
 
   .chapter-label .ch-symbol {
-    font-size: 12px;
+    font-size: 14px;
     opacity: 0.7;
   }
 
   .chapter-label .ch-name {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   /* Lesson item */
@@ -156,8 +162,61 @@
     background: var(--cream);
   }
 
+  /* Banner */
+  .course-banner {
+    width: 100%;
+    height: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .course-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  /* Fallback if image not loaded */
+  .course-banner-fallback {
+    width: 100%;
+    height: 100%;
+    background: #2D4A35;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .course-banner-fallback .banner-en {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .course-banner-fallback .banner-zh {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: 0.05em;
+  }
+
+  .course-banner-fallback .banner-sub {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
   .main-header {
-    padding: 1.5rem 2.5rem 1rem;
+    padding: 0.9rem 2rem 0.75rem;
     border-bottom: 1px solid var(--cream-border);
     flex-shrink: 0;
   }
@@ -165,13 +224,13 @@
   .main-breadcrumb {
     font-size: 11px;
     color: var(--text-muted);
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     letter-spacing: 0.04em;
   }
 
   .main-lesson-title {
     font-family: var(--serif);
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     color: var(--text-primary);
     line-height: 1.4;
@@ -367,13 +426,25 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <p class="sidebar-course-label">入門線上課</p>
-      <p class="sidebar-course-title">行星意識<br>認識自己的天空地圖</p>
+      <p class="sidebar-course-subtitle">課程列表</p>
     </div>
     <nav class="sidebar-nav" id="sidebarNav"></nav>
   </aside>
 
   <!-- Main -->
   <main class="main">
+
+    <!-- Banner：將圖片上傳到 GitHub 後，把 src 改成圖片檔名，例如 src="banner.png" -->
+    <div class="course-banner">
+      <img src="banner.png" alt="行星意識入門線上課"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="course-banner-fallback" style="display:none;">
+        <span class="banner-en">Planetary Consciousness Astrology · Beginner Course</span>
+        <span class="banner-zh">行星意識・入門線上課</span>
+        <span class="banner-sub">認識自己的天空地圖</span>
+      </div>
+    </div>
+
     <div class="main-header" id="mainHeader">
       <p class="main-breadcrumb" id="breadcrumb">選擇左側課程開始學習</p>
       <h1 class="main-lesson-title" id="mainTitle">行星意識・入門線上課</h1>

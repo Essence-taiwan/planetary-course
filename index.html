@@ -876,10 +876,9 @@ function navigateLesson(dir) {
   }
 }
 
-buildSidebar();
-
 // Password protection
 const COURSE_PASSWORD = 'astro2026';
 
 function checkPassword() {
-  const input = document.getElementById('passwordInput'
+  const input = document.getElementById('passwordInput').value;
+  const 

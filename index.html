@@ -586,10 +586,10 @@
       type="password"
       id="passwordInput"
       placeholder="請輸入課程密碼"
-      onkeydown="if(event.key==='Enter') checkPassword()"
+      
     >
     <p class="password-error" id="passwordError">密碼錯誤，請再試一次</p>
-    <button class="password-btn" onclick="checkPassword()">進入課程</button>
+    <button class="password-btn" id="enterBtn">進入課程</button>
   </div>
 </div>
 
@@ -877,8 +877,35 @@ function navigateLesson(dir) {
 }
 
 // Password protection
-const COURSE_PASSWORD = 'astro2026';
+document.addEventListener('DOMContentLoaded', function() {
+  const COURSE_PASSWORD = 'astro2026';
+  const screen = document.getElementById('passwordScreen');
+  const input = document.getElementById('passwordInput');
+  const error = document.getElementById('passwordError');
+  const btn = document.getElementById('enterBtn');
 
-function checkPassword() {
-  const input = document.getElementById('passwordInput').value;
-  const 
+  function checkPassword() {
+    if (input.value === COURSE_PASSWORD) {
+      screen.style.display = 'none';
+      sessionStorage.setItem('courseAccess', 'true');
+    } else {
+      error.style.display = 'block';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', checkPassword);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+
+  if (sessionStorage.getItem('courseAccess') === 'true') {
+    screen.style.display = 'none';
+  }
+});
+
+buildSidebar();
+</script>
+</body>
+</html>
